@@ -14,4 +14,8 @@ object Libs {
     // Database
     const val postgres = "org.postgresql:postgresql:42.7.8"
     const val hikari = "com.zaxxer:HikariCP:6.2.1"
+
+    // Loglar içi
+    const val slf4jSimple = "org.slf4j:slf4j-simple:2.0.17"
+
 }

@@ -9,4 +9,5 @@ dependencies {
     api(Libs.joml)
     api(Libs.postgres)
     api(Libs.hikari)
+    api(Libs.slf4jSimple)
 }

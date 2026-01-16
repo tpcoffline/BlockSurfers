@@ -3,7 +3,7 @@ plugins {
 }
 
 allprojects {
-    group = "com.blocksurfers"
+    group = "me.tpcoffline"
     version = "1.0-SNAPSHOT"
 
     repositories {

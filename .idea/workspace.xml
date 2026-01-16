@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="21de5dbb-cf5c-42db-9625-65d17dad3e67" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buildSrc/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buildSrc/src/main/kotlin/Libs.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+    <list default="true" id="21de5dbb-cf5c-42db-9625-65d17dad3e67" name="Changes" comment="ilk committeki eksik dosyaları pushladım">
+      <change afterPath="$PROJECT_DIR$/game/src/main/java/me/tpcoffline/blocksurfers/game/GameServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/game/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/java/me/tpcoffline/Main.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +24,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "tpcoffline"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/tpcoffline/BlockSurfers",
+    "accountId": "8d619c70-f7a9-4465-9005-6658fe9852d8"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 6
 }]]></component>
@@ -38,17 +45,54 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.BlockSurfersNetwork:game [:game:me.tpcoffline.Main.main()].executor": "Run",
+    "Gradle.BlockSurfersNetwork:game [:game:me.tpcoffline.blocksurfers.game.GameServer.main()].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
+    "last_directory_selection": "C:/Users/lenovo/Desktop/kod/minestom/blocksurfers/BlockSurfersNetwork/game/src/main/java/me/tpcoffline",
     "onboarding.tips.debug.path": "C:/Users/lenovo/Desktop/kod/minestom/blocksurfers/BlockSurfersNetwork/common/src/main/java/me/tpcoffline/Main.java",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0"
   }
 }]]></component>
+  <component name="RunManager" selected="Application.me.tpcoffline.blocksurfers.game.GameServer">
+    <configuration name="GameServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="me.tpcoffline.GameServer" />
+      <module name="BlockSurfersNetwork.game.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="me.tpcoffline.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="me.tpcoffline.blocksurfers.game.GameServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="me.tpcoffline.blocksurfers.game.GameServer" />
+      <module name="BlockSurfersNetwork.game.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="me.tpcoffline.blocksurfers.game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.me.tpcoffline.blocksurfers.game.GameServer" />
+        <item itemvalue="Application.GameServer" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="21de5dbb-cf5c-42db-9625-65d17dad3e67" name="Changes" comment="" />
@@ -57,6 +101,23 @@
       <option name="presentableId" value="Default" />
       <updated>1768575838091</updated>
     </task>
+    <task id="LOCAL-00001" summary="Block Surfers ilk yükleme 16.01.2026 19:08 tpcoffline">
+      <option name="closed" value="true" />
+      <created>1768579694585</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1768579694586</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ilk committeki eksik dosyaları pushladım">
+      <option name="closed" value="true" />
+      <created>1768580308608</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1768580308608</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -70,6 +131,11 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Block Surfers ilk yükleme 16.01.2026 19:08 tpcoffline" />
+    <MESSAGE value="ilk committeki eksik dosyaları pushladım" />
+    <option name="LAST_COMMIT_MESSAGE" value="ilk committeki eksik dosyaları pushladım" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -82,11 +148,6 @@
           <url>file://$PROJECT_DIR$/lobby/src/main/java/me/tpcoffline/Main.java</url>
           <line>13</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/game/src/main/java/me/tpcoffline/Main.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
