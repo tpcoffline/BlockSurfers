@@ -1,6 +1,8 @@
 package me.tpcoffline.blocksurfers.game;
 
 
+import me.tpcoffline.blocksurfers.game.commands.TestCommand;
+import me.tpcoffline.blocksurfers.game.parkour.ParkourGenerator;
 import net.minestom.server.Auth;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.coordinate.Pos;
@@ -15,23 +17,28 @@ public class GameServer {
     public static void main(String[] args) {
         MinecraftServer minecraftServer = MinecraftServer.init(new Auth.Online());
 
-        // 2. Dünya (Instance) Oluştur
+        // Instance Oluştur
         InstanceManager instanceManager = MinecraftServer.getInstanceManager();
         InstanceContainer instanceContainer = instanceManager.createInstanceContainer();
 
-        // Işıklandırma ve Zemin Ayarı (Düz taş zemin)
+        // Işıklandırma ve elmas blok
         instanceContainer.setChunkSupplier(LightingChunk::new);
         instanceContainer.setGenerator(unit -> {});
         instanceContainer.setBlock(0, 41, 0, Block.DIAMOND_BLOCK);
 
-        // 3. Oyuncu Giriş Olayı
+        // Oyuncu Giriş eventi
         GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
         globalEventHandler.addListener(AsyncPlayerConfigurationEvent.class, event -> {
             event.setSpawningInstance(instanceContainer);
             event.getPlayer().setRespawnPoint(new Pos(0.5, 42, 0.5));
         });
 
-        // 4. Sunucuyu Aç
+        // test komutu
+        ParkourGenerator parkourGenerator = new ParkourGenerator();
+        MinecraftServer.getCommandManager().register(new TestCommand(parkourGenerator));
+
+
+        // Sunucuyu Aç
         minecraftServer.start("0.0.0.0", 25565);
     }
 }
