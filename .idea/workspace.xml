@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="21de5dbb-cf5c-42db-9625-65d17dad3e67" name="Changes" comment="ilk committeki eksik dosyaları pushladım">
-      <change afterPath="$PROJECT_DIR$/game/src/main/java/me/tpcoffline/blocksurfers/game/GameServer.java" afterDir="false" />
+    <list default="true" id="21de5dbb-cf5c-42db-9625-65d17dad3e67" name="Changes" comment="kütüphaneler vs ayarlandı oyunu yapmaya hazır">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/game/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/src/main/java/me/tpcoffline/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/java/me/tpcoffline/blocksurfers/game/GameServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/me/tpcoffline/blocksurfers/game/GameServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,44 +18,61 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="BlockSurfersNetwork" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "tpcoffline"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;tpcoffline&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/tpcoffline/BlockSurfers",
-    "accountId": "8d619c70-f7a9-4465-9005-6658fe9852d8"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tpcoffline/BlockSurfers&quot;,
+    &quot;accountId&quot;: &quot;8d619c70-f7a9-4465-9005-6658fe9852d8&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="38LPNEbVdmI35BnKmbRV7TPcDyw" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.BlockSurfersNetwork:game [:game:me.tpcoffline.Main.main()].executor": "Run",
-    "Gradle.BlockSurfersNetwork:game [:game:me.tpcoffline.blocksurfers.game.GameServer.main()].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_directory_selection": "C:/Users/lenovo/Desktop/kod/minestom/blocksurfers/BlockSurfersNetwork/game/src/main/java/me/tpcoffline",
-    "onboarding.tips.debug.path": "C:/Users/lenovo/Desktop/kod/minestom/blocksurfers/BlockSurfersNetwork/common/src/main/java/me/tpcoffline/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.BlockSurfersNetwork:game [:game:me.tpcoffline.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BlockSurfersNetwork:game [:game:me.tpcoffline.blocksurfers.game.GameServer.main()].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/lenovo/Desktop/kod/minestom/blocksurfers/BlockSurfersNetwork/game/src/main/java/me/tpcoffline&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/lenovo/Desktop/kod/minestom/blocksurfers/BlockSurfersNetwork/common/src/main/java/me/tpcoffline/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.me.tpcoffline.blocksurfers.game.GameServer">
     <configuration name="GameServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="me.tpcoffline.GameServer" />
@@ -117,7 +131,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768580308608</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="kütüphaneler vs ayarlandı oyunu yapmaya hazır">
+      <option name="closed" value="true" />
+      <created>1768583151981</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1768583151983</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -134,7 +156,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Block Surfers ilk yükleme 16.01.2026 19:08 tpcoffline" />
     <MESSAGE value="ilk committeki eksik dosyaları pushladım" />
-    <option name="LAST_COMMIT_MESSAGE" value="ilk committeki eksik dosyaları pushladım" />
+    <MESSAGE value="kütüphaneler vs ayarlandı oyunu yapmaya hazır" />
+    <option name="LAST_COMMIT_MESSAGE" value="kütüphaneler vs ayarlandı oyunu yapmaya hazır" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

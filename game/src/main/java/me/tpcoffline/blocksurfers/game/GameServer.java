@@ -1,6 +1,7 @@
 package me.tpcoffline.blocksurfers.game;
 
 
+import net.minestom.server.Auth;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.event.GlobalEventHandler;
@@ -12,7 +13,7 @@ import net.minestom.server.instance.block.Block;
 
 public class GameServer {
     public static void main(String[] args) {
-        MinecraftServer minecraftServer = MinecraftServer.init();
+        MinecraftServer minecraftServer = MinecraftServer.init(new Auth.Online());
 
         // 2. Dünya (Instance) Oluştur
         InstanceManager instanceManager = MinecraftServer.getInstanceManager();
@@ -20,13 +21,14 @@ public class GameServer {
 
         // Işıklandırma ve Zemin Ayarı (Düz taş zemin)
         instanceContainer.setChunkSupplier(LightingChunk::new);
-        instanceContainer.setGenerator(unit -> unit.modifier().fillHeight(0, 40, Block.STONE));
+        instanceContainer.setGenerator(unit -> {});
+        instanceContainer.setBlock(0, 41, 0, Block.DIAMOND_BLOCK);
 
         // 3. Oyuncu Giriş Olayı
         GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
         globalEventHandler.addListener(AsyncPlayerConfigurationEvent.class, event -> {
             event.setSpawningInstance(instanceContainer);
-            event.getPlayer().setRespawnPoint(new Pos(0, 42, 0));
+            event.getPlayer().setRespawnPoint(new Pos(0.5, 42, 0.5));
         });
 
         // 4. Sunucuyu Aç
