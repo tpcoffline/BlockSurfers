@@ -29,10 +29,12 @@ public class GameServer {
         InstanceManager instanceManager = MinecraftServer.getInstanceManager();
         InstanceContainer instanceContainer = instanceManager.createInstanceContainer();
 
+        // parkur manager oluştur
+        ParkourManager parkourManager = new ParkourManager();
+
         // Işıklandırma ve elmas blok
         instanceContainer.setChunkSupplier(LightingChunk::new);
-        instanceContainer.setGenerator(unit -> {});
-        instanceContainer.setBlock(0, 41, 0, Block.DIAMOND_BLOCK);
+        instanceContainer.setBlock(0, 41, 0, Block.DIAMOND_BLOCK.withHandler(new ParkourBlockHandler(parkourManager,0)));
 
 
         // Oyuncu Giriş eventi
@@ -42,8 +44,7 @@ public class GameServer {
             event.getPlayer().setRespawnPoint(new Pos(0.5, 42, 0.5));
         });
 
-        // parkur manager oluştur
-        ParkourManager parkourManager = new ParkourManager();
+
 
         // test komutu
         MinecraftServer.getCommandManager().register(new TestCommand(parkourManager));
@@ -70,10 +71,7 @@ public class GameServer {
         var playerLoseNode = EventNode.value("player_lose", EventFilter.PLAYER, Predicate.not(Player::isOnGround));
         playerLoseNode.addListener(EventListener.builder(PlayerMoveEvent.class)
                 .filter(event -> ((int) event.getPlayer().getPosition().y()) < 32)
-                .handler(event -> {
-                    parkourManager.reset(event.getInstance(),event.getPlayer());
-
-                })
+                .handler(event -> parkourManager.reset(event.getInstance(),event.getPlayer()))
                 .build());
         globalEventHandler.addChild(playerLoseNode);
 
