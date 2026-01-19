@@ -3,7 +3,7 @@ package me.tpcoffline.blocksurfers.game;
 
 import me.tpcoffline.blocksurfers.game.commands.TestCommand;
 import me.tpcoffline.blocksurfers.game.parkour.ParkourBlockHandler;
-import me.tpcoffline.blocksurfers.game.parkour.ParkourGenerator;
+import me.tpcoffline.blocksurfers.game.parkour.ParkourManager;
 import net.minestom.server.Auth;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.coordinate.Pos;
@@ -14,7 +14,6 @@ import net.minestom.server.event.EventNode;
 import net.minestom.server.event.GlobalEventHandler;
 import net.minestom.server.event.player.AsyncPlayerConfigurationEvent;
 import net.minestom.server.event.player.PlayerMoveEvent;
-import net.minestom.server.instance.Instance;
 import net.minestom.server.instance.InstanceContainer;
 import net.minestom.server.instance.InstanceManager;
 import net.minestom.server.instance.LightingChunk;
@@ -43,17 +42,19 @@ public class GameServer {
             event.getPlayer().setRespawnPoint(new Pos(0.5, 42, 0.5));
         });
 
+        // parkur manager oluştur
+        ParkourManager parkourManager = new ParkourManager();
+
         // test komutu
-        ParkourGenerator parkourGenerator = new ParkourGenerator();
-        MinecraftServer.getCommandManager().register(new TestCommand(parkourGenerator));
+        MinecraftServer.getCommandManager().register(new TestCommand(parkourManager));
 
 
         // handlerlı bloğa bastığını kontrol etme
         var playerStepBlockNode = EventNode.value("player_step_block", EventFilter.PLAYER, Player::isOnGround);
         playerStepBlockNode.addListener(EventListener.builder(PlayerMoveEvent.class)
-                .filter(event -> event.getPlayer().getInstance().getBlock(event.getNewPosition().sub(0,1,0)).handler() instanceof ParkourBlockHandler)
+                .filter(event -> event.getInstance().getBlock(event.getNewPosition().sub(0,1,0)).handler() instanceof ParkourBlockHandler)
                 .handler(event -> {
-                    var instance = event.getPlayer().getInstance();
+                    var instance = event.getInstance();
                     var blockPos = event.getNewPosition().sub(0, 1, 0);
                     var block = instance.getBlock(blockPos);
 
@@ -64,6 +65,17 @@ public class GameServer {
                 })
                 .build());
         globalEventHandler.addChild(playerStepBlockNode);
+
+        // ölme
+        var playerLoseNode = EventNode.value("player_lose", EventFilter.PLAYER, Predicate.not(Player::isOnGround));
+        playerLoseNode.addListener(EventListener.builder(PlayerMoveEvent.class)
+                .filter(event -> ((int) event.getPlayer().getPosition().y()) < 32)
+                .handler(event -> {
+                    parkourManager.reset(event.getInstance(),event.getPlayer());
+
+                })
+                .build());
+        globalEventHandler.addChild(playerLoseNode);
 
 
 

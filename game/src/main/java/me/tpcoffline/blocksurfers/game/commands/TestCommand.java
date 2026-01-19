@@ -1,6 +1,6 @@
 package me.tpcoffline.blocksurfers.game.commands;
 
-import me.tpcoffline.blocksurfers.game.parkour.ParkourGenerator;
+import me.tpcoffline.blocksurfers.game.parkour.ParkourManager;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minestom.server.command.builder.Command;
 import net.minestom.server.command.builder.arguments.ArgumentType;
@@ -9,9 +9,9 @@ import net.minestom.server.entity.Player;
 
 public class TestCommand extends Command {
 
-    private final ParkourGenerator generator;
+    private final ParkourManager generator;
 
-    public TestCommand(ParkourGenerator generator) {
+    public TestCommand(ParkourManager generator) {
         super("test");
 
         // KRİTİK DÜZELTME: Bunu yazmazsan hata verir
@@ -23,6 +23,7 @@ public class TestCommand extends Command {
 
         var generateNextBlock = ArgumentType.Literal("generete_next_block");
         var backSpawn = ArgumentType.Literal("back_spawn");
+        var reset = ArgumentType.Literal("reset");
 
         addSyntax((sender, context) -> {
             if (sender instanceof Player player) {
@@ -33,6 +34,10 @@ public class TestCommand extends Command {
         addSyntax((sender, context) -> {
             if(sender instanceof Player player){player.teleport(new Pos(0,42,0));}
         },backSpawn );
+
+        addSyntax((sender, context) -> {
+            if(sender instanceof Player player){generator.reset(player.getInstance(),player);}
+        },reset );
 
     }
 }
