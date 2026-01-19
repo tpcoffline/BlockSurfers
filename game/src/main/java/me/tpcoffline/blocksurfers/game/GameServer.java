@@ -50,7 +50,7 @@ public class GameServer {
 
 
         // handlerlı bloğa bastığını kontrol etme
-        var playerStepBlockNode = EventNode.value("player_step_block", EventFilter.PLAYER, Player::isOnGround);
+        var playerStepBlockNode = EventNode.type("player_step_block", EventFilter.PLAYER);
         playerStepBlockNode.addListener(EventListener.builder(PlayerMoveEvent.class)
                 .filter(event -> event.getInstance().getBlock(event.getNewPosition().sub(0,1,0)).handler() instanceof ParkourBlockHandler)
                 .handler(event -> {
