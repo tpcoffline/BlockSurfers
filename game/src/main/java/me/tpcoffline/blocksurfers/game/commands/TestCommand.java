@@ -1,10 +1,7 @@
 package me.tpcoffline.blocksurfers.game.commands;
 
 import me.tpcoffline.blocksurfers.game.parkour.ParkourGenerator;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.minestom.server.command.builder.ArgumentCallback;
 import net.minestom.server.command.builder.Command;
 import net.minestom.server.command.builder.arguments.ArgumentType;
 import net.minestom.server.coordinate.Pos;
@@ -22,9 +19,7 @@ public class TestCommand extends Command {
 
         var mm = MiniMessage.miniMessage();
 
-        setDefaultExecutor((sender, context) -> {
-            sender.sendMessage(mm.deserialize("<red>Yanlış Kullanım!"));
-        });
+        setDefaultExecutor((sender, context) -> sender.sendMessage(mm.deserialize("<red>Yanlış Kullanım!")));
 
         var generateNextBlock = ArgumentType.Literal("generete_next_block");
         var backSpawn = ArgumentType.Literal("back_spawn");
@@ -36,7 +31,7 @@ public class TestCommand extends Command {
         }, generateNextBlock);
 
         addSyntax((sender, context) -> {
-            if(sender instanceof Player player){player.teleport(new Pos(0,42,0));};
+            if(sender instanceof Player player){player.teleport(new Pos(0,42,0));}
         },backSpawn );
 
     }
