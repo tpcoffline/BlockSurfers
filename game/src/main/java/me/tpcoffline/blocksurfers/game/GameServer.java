@@ -63,6 +63,7 @@ public class GameServer {
 
                 })
                 .build());
+        globalEventHandler.addChild(playerStepBlockNode);
 
 
 

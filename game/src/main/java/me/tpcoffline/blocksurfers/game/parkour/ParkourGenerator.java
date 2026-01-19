@@ -9,8 +9,9 @@ import java.util.Random;
 public class ParkourGenerator {
 
 
-    private static Pos lastPosition = new Pos(0,41,0);
-    private static int blockCount;    private final Random random = new Random();
+    private Pos lastPosition = new Pos(0,41,0);
+    private int blockCount;
+    private final Random random = new Random();
 
 
     public void generateNextBlock(Instance instance) {
@@ -28,8 +29,8 @@ public class ParkourGenerator {
 
     }
 
-    public static int getBlockCount() {
-        return blockCount;
+    public int getBlockCount() {
+        return this.blockCount;
     }
 
 

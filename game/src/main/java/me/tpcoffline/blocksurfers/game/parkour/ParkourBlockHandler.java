@@ -24,7 +24,7 @@ public class ParkourBlockHandler implements BlockHandler {
 
     public void onStep(Player player, Pos blockPos, Block block) {
         Instance instance = player.getInstance();
-        if((ParkourGenerator.getBlockCount() - blockID) < 5){
+        if((generator.getBlockCount() - blockID) < 5){
             generator.generateNextBlock(instance);
         }
         final var scheduler = MinecraftServer.getSchedulerManager();
