@@ -3,13 +3,17 @@ package me.tpcoffline.blocksurfers.game.parkour;
 import me.tpcoffline.blocksurfers.game.GameState;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.coordinate.Pos;
+import net.minestom.server.entity.Entity;
+import net.minestom.server.entity.EntityType;
 import net.minestom.server.entity.Player;
+import net.minestom.server.entity.metadata.other.FallingBlockMeta;
 import net.minestom.server.instance.Instance;
 import net.minestom.server.instance.block.Block;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class ParkourManager {
@@ -43,7 +47,6 @@ public class ParkourManager {
         instance.setBlock(newPosition, Block.STONE.withHandler(new ParkourBlockHandler(this,blockCount)));
         placedBlocks.add(newPosition);
         lastPosition = newPosition;
-        final Pos blockPos = newPosition;
 
         // belli süre sonra bloğu ve listeden koordinatı siliyor
         if(state == GameState.RUNNING){scheduleBlockRemoval(instance, newPosition);}
@@ -61,7 +64,16 @@ public class ParkourManager {
 
     private void scheduleBlockRemoval(Instance instance, Pos blockPos) {
         MinecraftServer.getSchedulerManager().buildTask(() -> {
+                    Entity fallingBlock = new Entity(EntityType.FALLING_BLOCK);
+                    FallingBlockMeta fallingBlockMeta = (FallingBlockMeta) fallingBlock.getEntityMeta();
+                    fallingBlockMeta.setBlock(instance.getBlock(blockPos));
+                    fallingBlock.scheduler().buildTask(fallingBlock::remove).delay(Duration.ofSeconds(1)).schedule();
+                    fallingBlock.setInstance(instance, blockPos.add(0.5,0,0.5));
+
                     instance.setBlock(blockPos, Block.AIR);
+
+
+
                     this.removeBlock(blockPos);
                 })
                 .delay(Duration.ofSeconds(blockCooldownSeconds))

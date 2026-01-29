@@ -24,6 +24,7 @@ public class ParkourBlockHandler implements BlockHandler {
 
         if(generator.getState() == GameState.WAITING && !(player.getInstance().getBlock(player.getPosition().sub(0,1,0)).compare(Block.DIAMOND_BLOCK))){
             generator.startGame(instance);
+            player.sendMessage("Oyun başlatıldı");
         }
 
         // eğer önünde 5 bloktan az blok varsa yeni bir blok oluşturuyor

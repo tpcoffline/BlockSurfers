@@ -15,14 +15,11 @@ import net.minestom.server.event.GlobalEventHandler;
 import net.minestom.server.event.entity.EntityDamageEvent;
 import net.minestom.server.event.player.AsyncPlayerConfigurationEvent;
 import net.minestom.server.event.player.PlayerMoveEvent;
-import net.minestom.server.event.player.PlayerSpawnEvent;
-import net.minestom.server.event.server.ServerTickMonitorEvent;
 import net.minestom.server.instance.InstanceContainer;
 import net.minestom.server.instance.InstanceManager;
 import net.minestom.server.instance.LightingChunk;
 import net.minestom.server.instance.block.Block;
 
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Predicate;
 
 public class GameServer {
@@ -93,9 +90,7 @@ public class GameServer {
 
         java.util.concurrent.atomic.AtomicReference<Double> lastMspt = new java.util.concurrent.atomic.AtomicReference<>(0.0);
 
-        globalEventHandler.addListener(net.minestom.server.event.server.ServerTickMonitorEvent.class, event -> {
-            lastMspt.set(event.getTickMonitor().getTickTime());
-        });
+        globalEventHandler.addListener(net.minestom.server.event.server.ServerTickMonitorEvent.class, event -> lastMspt.set(event.getTickMonitor().getTickTime()));
 
         net.kyori.adventure.bossbar.BossBar devStatsBar = net.kyori.adventure.bossbar.BossBar.bossBar(
                 net.kyori.adventure.text.Component.empty(),
@@ -104,9 +99,7 @@ public class GameServer {
                 net.kyori.adventure.bossbar.BossBar.Overlay.PROGRESS
         );
 
-        globalEventHandler.addListener(net.minestom.server.event.player.PlayerSpawnEvent.class, event -> {
-            event.getPlayer().showBossBar(devStatsBar);
-        });
+        globalEventHandler.addListener(net.minestom.server.event.player.PlayerSpawnEvent.class, event -> event.getPlayer().showBossBar(devStatsBar));
 
         MinecraftServer.getSchedulerManager().buildTask(() -> {
             double mspt = lastMspt.get();

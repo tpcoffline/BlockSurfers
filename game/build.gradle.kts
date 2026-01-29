@@ -8,4 +8,6 @@ dependencies {
 
 application {
     mainClass.set("me.tpcoffline.blocksurfers.game.GameServer")
+
+
 }
