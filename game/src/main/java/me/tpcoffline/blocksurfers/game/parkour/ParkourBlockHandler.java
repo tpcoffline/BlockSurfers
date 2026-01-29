@@ -1,5 +1,6 @@
 package me.tpcoffline.blocksurfers.game.parkour;
 
+import me.tpcoffline.blocksurfers.game.GameState;
 import net.kyori.adventure.key.Key;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.entity.Player;
@@ -20,8 +21,12 @@ public class ParkourBlockHandler implements BlockHandler {
 
     public void onStep(Player player, Pos blockPos, Block block) {
         Instance instance = player.getInstance();
-        // eğer önünde 5 bloktan az blok varsa yeni bir blok oluşturuyor
 
+        if(generator.getState() == GameState.WAITING && !(player.getInstance().getBlock(player.getPosition().sub(0,1,0)).compare(Block.DIAMOND_BLOCK))){
+            generator.startGame(instance);
+        }
+
+        // eğer önünde 5 bloktan az blok varsa yeni bir blok oluşturuyor
         int frontBlockCount = generator.getBlockCount() - blockID;
         while(frontBlockCount < 5){
             generator.generateNextBlock(instance);

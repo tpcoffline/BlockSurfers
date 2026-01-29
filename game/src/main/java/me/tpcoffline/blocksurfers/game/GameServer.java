@@ -12,13 +12,17 @@ import net.minestom.server.event.EventFilter;
 import net.minestom.server.event.EventListener;
 import net.minestom.server.event.EventNode;
 import net.minestom.server.event.GlobalEventHandler;
+import net.minestom.server.event.entity.EntityDamageEvent;
 import net.minestom.server.event.player.AsyncPlayerConfigurationEvent;
 import net.minestom.server.event.player.PlayerMoveEvent;
+import net.minestom.server.event.player.PlayerSpawnEvent;
+import net.minestom.server.event.server.ServerTickMonitorEvent;
 import net.minestom.server.instance.InstanceContainer;
 import net.minestom.server.instance.InstanceManager;
 import net.minestom.server.instance.LightingChunk;
 import net.minestom.server.instance.block.Block;
 
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Predicate;
 
 public class GameServer {
@@ -32,10 +36,11 @@ public class GameServer {
         // parkur manager oluştur
         ParkourManager parkourManager = new ParkourManager();
 
-        // Işıklandırma ve elmas blok
+        // Dünya ayarları
         instanceContainer.setChunkSupplier(LightingChunk::new);
         instanceContainer.setBlock(0, 41, 0, Block.DIAMOND_BLOCK.withHandler(new ParkourBlockHandler(parkourManager,0)));
-
+        instanceContainer.setTimeRate(0);
+        instanceContainer.setTime(6000);
 
         // Oyuncu Giriş eventi
         GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
@@ -49,6 +54,8 @@ public class GameServer {
         // test komutu
         MinecraftServer.getCommandManager().register(new TestCommand(parkourManager));
 
+
+        // TODO: Oyuncu eventlerini düzgünce tek node'a taşı ve başka classa taşı
 
         // handlerlı bloğa bastığını kontrol etme
         var playerStepBlockNode = EventNode.type("player_step_block", EventFilter.PLAYER);
@@ -67,7 +74,7 @@ public class GameServer {
                 .build());
         globalEventHandler.addChild(playerStepBlockNode);
 
-        // ölme
+        // kaybetme
         var playerLoseNode = EventNode.value("player_lose", EventFilter.PLAYER, Predicate.not(Player::isOnGround));
         playerLoseNode.addListener(EventListener.builder(PlayerMoveEvent.class)
                 .filter(event -> ((int) event.getPlayer().getPosition().y()) < 32)
@@ -75,6 +82,50 @@ public class GameServer {
                 .build());
         globalEventHandler.addChild(playerLoseNode);
 
+
+        // ölmeyi kapat
+        var entityDamageNode = EventNode.type("entity_damaged",EventFilter.ENTITY);
+        entityDamageNode.addListener(EventListener.builder(EntityDamageEvent.class).handler(event -> event.setCancelled(true)).build());
+        globalEventHandler.addChild(entityDamageNode);
+
+
+        // --- DEV INFO BOSSBAR  ---
+
+        java.util.concurrent.atomic.AtomicReference<Double> lastMspt = new java.util.concurrent.atomic.AtomicReference<>(0.0);
+
+        globalEventHandler.addListener(net.minestom.server.event.server.ServerTickMonitorEvent.class, event -> {
+            lastMspt.set(event.getTickMonitor().getTickTime());
+        });
+
+        net.kyori.adventure.bossbar.BossBar devStatsBar = net.kyori.adventure.bossbar.BossBar.bossBar(
+                net.kyori.adventure.text.Component.empty(),
+                1f,
+                net.kyori.adventure.bossbar.BossBar.Color.GREEN,
+                net.kyori.adventure.bossbar.BossBar.Overlay.PROGRESS
+        );
+
+        globalEventHandler.addListener(net.minestom.server.event.player.PlayerSpawnEvent.class, event -> {
+            event.getPlayer().showBossBar(devStatsBar);
+        });
+
+        MinecraftServer.getSchedulerManager().buildTask(() -> {
+            double mspt = lastMspt.get();
+            Runtime runtime = Runtime.getRuntime();
+            long usedMemBytes = runtime.totalMemory() - runtime.freeMemory();
+            long usedMemMB = usedMemBytes / 1024 / 1024;
+
+            // Yazı formatı: "mspt: 15.20ms - ram usage: 350MB"
+            String displayText = String.format(
+                    "<gray>mspt:</gray> <green>%.2fms</green> <gray>-</gray> <gray>ram usage:</gray> <light_purple>%dMB</light_purple>",
+                    mspt, usedMemMB
+            );
+
+            devStatsBar.name(net.kyori.adventure.text.minimessage.MiniMessage.miniMessage().deserialize(displayText));
+
+            float progress = (float) usedMemBytes / runtime.maxMemory();
+            devStatsBar.progress(Math.max(0.0f, Math.min(1.0f, progress)));
+
+        }).repeat(java.time.Duration.ofMillis(250)).schedule();
 
 
 
